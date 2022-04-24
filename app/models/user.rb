@@ -1,3 +1,8 @@
 class User < ApplicationRecord
-  has_many :questionnaire, dependent: destroy
+  # Validations
+  validates :email, presence: true
+  validates :email, uniqueness: true
+
+  # Releational
+  has_many :questionnaires, dependent: :destroy
 end

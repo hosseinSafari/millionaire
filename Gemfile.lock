@@ -1,3 +1,11 @@
+PATH
+  remote: lib/peafowl
+  specs:
+    peafowl (0.1.1)
+      activemodel (>= 4)
+      interactor (~> 3.0)
+      virtus
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -62,6 +70,10 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
+    axiom-types (0.1.1)
+      descendants_tracker (~> 0.0.4)
+      ice_nine (~> 0.11.0)
+      thread_safe (~> 0.3, >= 0.3.1)
     bcrypt (3.1.17)
     bindex (0.8.1)
     bootsnap (1.11.1)
@@ -78,14 +90,22 @@ GEM
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
     childprocess (4.1.0)
+    coercible (1.0.0)
+      descendants_tracker (~> 0.0.1)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
+    descendants_tracker (0.0.4)
+      thread_safe (~> 0.3, >= 0.3.1)
     erubi (1.10.0)
     ffi (1.15.5)
+    figaro (1.2.0)
+      thor (>= 0.14.0, < 2)
     globalid (1.0.0)
       activesupport (>= 5.0)
     i18n (1.10.0)
       concurrent-ruby (~> 1.0)
+    ice_nine (0.11.2)
+    interactor (3.1.2)
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
@@ -105,6 +125,8 @@ GEM
     msgpack (1.5.1)
     nio4r (2.5.8)
     nokogiri (1.13.4-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.13.4-x86_64-linux)
       racc (~> 1.4)
     pg (1.3.5)
     public_suffix (4.0.7)
@@ -175,12 +197,17 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     thor (1.2.1)
+    thread_safe (0.3.6)
     tilt (2.0.10)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
+    virtus (2.0.0)
+      axiom-types (~> 0.1)
+      coercible (~> 1.0)
+      descendants_tracker (~> 0.0, >= 0.0.3)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -204,14 +231,17 @@ GEM
 
 PLATFORMS
   x86_64-darwin-19
+  x86_64-linux
 
 DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
+  figaro
   jbuilder (~> 2.7)
   listen (~> 3.3)
+  peafowl!
   pg (~> 1.1)
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)

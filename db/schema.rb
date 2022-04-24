@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 2022_04_24_112921) do
   create_table "options", force: :cascade do |t|
     t.bigint "question_id"
     t.string "context"
+    t.boolean "is_correct"
+    t.float "point"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["question_id"], name: "index_options_on_question_id"
@@ -35,6 +37,7 @@ ActiveRecord::Schema.define(version: 2022_04_24_112921) do
   create_table "questionnaire_questions", force: :cascade do |t|
     t.bigint "question_id"
     t.bigint "questionnaire_id"
+    t.boolean "is_used", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["question_id"], name: "index_questionnaire_questions_on_question_id"
@@ -43,7 +46,8 @@ ActiveRecord::Schema.define(version: 2022_04_24_112921) do
 
   create_table "questionnaires", force: :cascade do |t|
     t.bigint "user_id"
-    t.string "point"
+    t.float "point"
+    t.boolean "is_completed", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_questionnaires_on_user_id"

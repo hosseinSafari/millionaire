@@ -1,0 +1,19 @@
+<br />
+<%= button_to "New Questionnaire", api_v1_questionnaire_index_url, method: :get %>
+<br />
+<h3> Highest scores: </h3>
+<br />
+
+<% if @questionnaires.present? %>
+    <% @questionnaires.each do |questionnaire| %>
+        <ul>
+            <li><b>email:</b> <%= questionnaire&.user&.email %> </li>
+            <li><b>point:</b> <%= questionnaire&.point %></li>
+        </ul>
+        <hr />
+        <br />
+    <% end %>
+
+<% else %>
+    <p>There is no data.</p>
+<% end %>
