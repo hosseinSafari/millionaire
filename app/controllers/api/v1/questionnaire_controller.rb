@@ -5,7 +5,9 @@ module Api
 
             def index
                 result = ::Api::V1::Questionnaire::Index.call(parmeters)
-                return render json: { errors: result.errors }, status: 400 if result.errors.present?
+                byebug
+                @error = result.errors
+                render :file => 'public/404.html', :status => :not_found, :layout => false if result.errors.present?
 
                 @question = result[:questionnaire]&.questionnaire_questions&.where(is_used: false)&.first&.question
                 @score = result[:questionnaire]&.point
