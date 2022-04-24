@@ -1,6 +1,19 @@
 <br />
-<%= button_to "New Questionnaire", api_v1_questionnaire_index_url, method: :get %>
+<%
+=begin%>
+ <%= button_to "New Questionnaire", api_v1_questionnaire_index_url, method: :get %> 
+<%
+=end%>
+<form action = "/api/v1/questionnaire">
+    <h4>please enter your email and hit submit to start fill the questionnaire:</h4>
+    <input name="email" value="" />
+    <br>
+    <br>
+    <input type="submit"/>
+</form>
 <br />
+<hr>
+<hr>
 <h3> Highest scores: </h3>
 <br />
 

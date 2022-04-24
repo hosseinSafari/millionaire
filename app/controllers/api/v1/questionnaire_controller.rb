@@ -16,7 +16,7 @@ module Api
             private
 
             def parmeters
-                params.permit(:option_id)&.merge(current_user: @current_user)
+                params.permit(:option_id, :email)&.merge(current_user: @current_user)
             end
         end
     end

@@ -6,11 +6,13 @@ module Api
 
                 attribute :current_user, ::User
                 attribute :option_id, ::String
+                attribute :email, ::String
 
                 validates :current_user, presence: true
 
                 def call
                     find_or_create_questionnaire
+                    return if @questionnaire&.user&.email != @email
 
                     if @option_id.present?
                         @option = find_option
@@ -62,7 +64,7 @@ module Api
                     question_count = @questionnaire&.questions&.count
 
                     result = completed_answer_count == question_count
-                    @questionnaire&.update!(is_completed: true)
+                    @questionnaire&.update!(is_completed: true) if result.present?
 
                     result
                 end

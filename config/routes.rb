@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :questionnaire, path: '/api/v1/questionnaire'
+      resources :questionnaire, path: 'questionnaire'
     end
   end
 
