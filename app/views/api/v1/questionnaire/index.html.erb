@@ -1,8 +1,17 @@
-<h3>Question:</h3>
-<br/>
-<%= @question&.context %>
-<ul>
-    <% @question&.options&.each do |option| %>
-        <li><%= option&.context %></li>
-    <% end %>
-</ul>
+<% if @is_completed.present? %>
+    <p>Your score was: <%= @score %></p>
+<% else %>
+    <h3>Question:</h3>
+    <br/>
+    <%= @question&.context %>
+    <form action = "questionnaire">
+    <ul>
+        <% @question&.options&.each do |option| %>
+            <li><input type="radio" name="option_id" value="<%= option&.id %>"><%= option&.context %></li>
+        <% end %>
+    </ul>
+    <br>
+    <br>
+    <input type="submit"/>
+    </form>
+<% end %>

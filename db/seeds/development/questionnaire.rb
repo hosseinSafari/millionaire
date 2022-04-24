@@ -3,7 +3,8 @@ user = ::User.create!(email: "test_user@millionaire.com")
 10.times do |i|
     question = ::Question.create!(context: "Question #{i}")
     4.times do |j|
-        ::Option.create!(question: question, point: j, context: "Option #{j}")
+        option = ::Option.create!(question: question, point: j, context: "Option #{j}")
+        option.update(is_correct: true) if j == 1
     end
 end
 
