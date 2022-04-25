@@ -12,7 +12,6 @@ module Api
 
                 def call
                     find_or_create_questionnaire
-                    byebug
                     add_error!(["Please log in."]) if @questionnaire&.user&.email != @email
 
                     if @option_id.present?

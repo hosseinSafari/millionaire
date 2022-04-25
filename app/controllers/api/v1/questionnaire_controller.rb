@@ -5,7 +5,6 @@ module Api
 
             def index
                 result = ::Api::V1::Questionnaire::Index.call(parmeters)
-                byebug
                 @error = result.errors
                 render :file => 'public/404.html', :status => :not_found, :layout => false if result.errors.present?
 
