@@ -5,7 +5,6 @@ module Api
 
             def index
                 result = ::Api::V1::Questionnaire::Index.call(parmeters)
-                byebug
                 @error = result.errors
                 render :file => 'public/404.html', :status => :not_found, :layout => false if result.errors.present?
 
@@ -13,6 +12,7 @@ module Api
                 @score = result[:questionnaire]&.point
                 @is_completed = result[:is_completed]
                 @correct_option = result[:correct_option].present? ? result[:correct_option] : nil
+                @email = @current_user.email
             end
 
             private

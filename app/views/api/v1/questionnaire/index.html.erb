@@ -1,19 +1,13 @@
 <% if @is_completed.present? %>
     <p>Your score was: <%= @score %></p>
 <% else %>
-    <p>Becase of we don't have authentication system yet, please send your email for every request.</p>
-    <br/>
-    <hr/>
-    <hr/>
     <br/>
     <h3>Question:</h3>
     <br/>
     <%= @question&.context %>
     <form action = "questionnaire">
+      <li><input type="hidden" name="email" value="<%= @email %>" /></li>
     <ul>
-        <li> please enter your email: <input name="email" value="" /></li>
-        <br>
-        
         <% @question&.options&.each do |option| %>
             <li><input type="radio" name="option_id" value  ="<%= option&.id %>"><%= option&.context %></li>
         <% end %>
