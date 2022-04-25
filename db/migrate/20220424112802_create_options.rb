@@ -3,8 +3,7 @@ class CreateOptions < ActiveRecord::Migration[6.1]
     create_table :options do |t|
       t.references :question
       t.string :context
-      t.boolean :is_correct
-      t.float :point
+      t.boolean :is_correct, default: false
 
       t.timestamps
     end

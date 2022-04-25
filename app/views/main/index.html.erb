@@ -17,11 +17,12 @@
 <h3> Highest scores: </h3>
 <br />
 
-<% if @questionnaires.present? %>
-    <% @questionnaires.each do |questionnaire| %>
+<% if @result.present? %>
+    <% @result.each do |res| %>
+    <% next if res[:total_point] == 0.0 %>
         <ul>
-            <li><b>email:</b> <%= questionnaire&.user&.email %> </li>
-            <li><b>point:</b> <%= questionnaire&.point %></li>
+            <li><b>email:</b> <%= res[:questionnaire]&.user&.email %> </li>
+            <li><b>point:</b> <%= res[:total_point] %></li>
         </ul>
         <hr />
         <br />

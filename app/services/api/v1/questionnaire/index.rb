@@ -17,7 +17,8 @@ module Api
                     if @option_id.present?
                         @option = find_option
                         @answer = create_answer
-                        calculate_point
+                        next_question
+                        context[:total_point] = calculate_point
                         context[:correct_option] = find_correct_option
                     end
 
@@ -45,10 +46,12 @@ module Api
                     end
                 end
 
-                def calculate_point
-                    questionnaire_point = @questionnaire.point
-                    @questionnaire&.update!(point: questionnaire_point + @option&.point) if @option&.is_correct.present?
+                def next_question
                     @questionnaire&.questionnaire_questions&.where(question_id: @option&.question&.id)&.last&.update!(is_used: true)
+                end
+
+                def calculate_point
+                    @questionnaire.questions.joins(options: :answers).where("answers.questionnaire_id = ? and options.is_correct IS ?", @questionnaire.id, true)&.sum(&:point)
                 end
 
                 def find_option

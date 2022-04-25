@@ -9,10 +9,10 @@ module Api
                 render :file => 'public/404.html', :status => :not_found, :layout => false if result.errors.present?
 
                 @question = result[:questionnaire]&.questionnaire_questions&.where(is_used: false)&.first&.question
-                @score = result[:questionnaire]&.point
                 @is_completed = result[:is_completed]
                 @correct_option = result[:correct_option].present? ? result[:correct_option] : nil
                 @email = @current_user.email
+                @total_point = result[:total_point]
             end
 
             private
