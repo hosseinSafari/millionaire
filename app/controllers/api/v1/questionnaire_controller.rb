@@ -12,6 +12,7 @@ module Api
                 @score = result[:questionnaire]&.point
                 @is_completed = result[:is_completed]
                 @correct_option = result[:correct_option].present? ? result[:correct_option] : nil
+                @email = @current_user.email
             end
 
             private

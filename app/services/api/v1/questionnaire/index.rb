@@ -12,7 +12,7 @@ module Api
 
                 def call
                     find_or_create_questionnaire
-                    add_error!(["Please log in."]) if @questionnaire&.user&.email != @email
+                    add_error!(["Incorrect email."]) if @questionnaire&.user&.email != @email
 
                     if @option_id.present?
                         @option = find_option
@@ -47,7 +47,7 @@ module Api
 
                 def calculate_point
                     questionnaire_point = @questionnaire.point
-                    @questionnaire&.update!(point: questionnaire_point + @option&.point)
+                    @questionnaire&.update!(point: questionnaire_point + @option&.point) if @option&.is_correct.present?
                     @questionnaire&.questionnaire_questions&.where(question_id: @option&.question&.id)&.last&.update!(is_used: true)
                 end
 
